@@ -6,11 +6,13 @@ import 'model/upbit_ticker_model.dart';
 
 Future<void> main() async {
   List<num> prices = [10, 20, 15, 25, 30, 35, 20, 25, 30, 40, 50, 45, 35, 40, 45, 55, 60, 70, 65, 75];
-  Future<List<UpbitTickerModel>> tickers = ApiService.getTicker("60","KRW","BTC","20");
-  Future<List<num>> bands = BollingerBands.calculateBollingerBands(tickers);
+  Future<List<UpbitTickerModel>> tickers = ApiService.getTicker("60","KRW","BTC","21");
+  Future<BollingerBands> bollingerBands = calculateBollingerBands(tickers);
 
-  List<num> bandValues = await bands;
-  print(bandValues);
+  BollingerBands bandValues = await bollingerBands;
+  print(bandValues.smaList[20]);
+  print(bandValues.upperBandList[20]);
+  print(bandValues.lowerBandList[20]);
 
 
   runApp(const MyApp());
